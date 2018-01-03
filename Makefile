@@ -26,7 +26,7 @@ deploy-docker:
 	rm -rf ./parity 
 	git clone -b $(PARITY_BRANCH_NAME) --single-branch https://github.com/paritytech/parity
 	docker build --build-arg rust_version=$(RUST_VERSION) -t parity_compile .
-	docker run -v $$(pwd)parity:/root/parity parity_compile
+	docker run -v $$(pwd)/parity:/root/parity parity_compile
 	echo "NEW CONTENTS" > $(RESULT_FILE_PATH)
 	$(call upload-file)
 	echo "File uploaded in Dropbox in path "$(RESULT_FILE_PATH)_$(FILE_TIMESTAMP)
